@@ -9,7 +9,7 @@ public class Client {
 		 */
 		 void display( int aNumber ){
 			// In dieser Methode soll die Methode translateNumber
-			// mit dem übergegebenen Wert der Variable aNumber
+			// mit dem uebergebenen Wert der Variable aNumber
 			// aufgerufen werden.
 			//
 			// Strenge Implementierung gegen das Interface Translator gewuenscht!
@@ -19,8 +19,3 @@ public class Client {
 
 		 }
 }
-
-
-
-
-

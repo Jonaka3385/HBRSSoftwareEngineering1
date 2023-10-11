@@ -20,11 +20,3 @@ interface Translator {
 	public String translateNumber(int number);
 
 } 
-
-
-
-
-
-
-
-
