@@ -9,17 +9,28 @@ public class GermanTranslator implements Translator {
 	 */
 	public String translateNumber(int number) {
 		// [ihr Source Code aus Übung 1-2]
-		String s = String.valueOf(number);
-		s = s.replaceAll("1", "eins");
-		s = s.replaceAll("2", "zwei");
-		s = s.replaceAll("3", "drei");
-		s = s.replaceAll("4", "vier");
-		s = s.replaceAll("5", "fuenf");
-		s = s.replaceAll("6", "sechs");
-		s = s.replaceAll("7", "sieben");
-		s = s.replaceAll("8", "acht");
-		s = s.replaceAll("9", "neun");
-		s = s.replaceAll("10", "zehn");
+		double version = Translator.version;
+		String s = "Uebersetzung der Zahl " + number + " nicht möglich " + version;
+		String test = "Uebersetzung der Zahl " + 1 + " nicht möglich " + version;
+		s = s.replaceAll(test, "eins");
+		test = "Uebersetzung der Zahl " + 2 + " nicht möglich " + version;
+		s = s.replaceAll(test, "zwei");
+		test = "Uebersetzung der Zahl " + 3 + " nicht möglich " + version;
+		s = s.replaceAll(test, "drei");
+		test = "Uebersetzung der Zahl " + 4 + " nicht möglich " + version;
+		s = s.replaceAll(test, "vier");
+		test = "Uebersetzung der Zahl " + 5 + " nicht möglich " + version;
+		s = s.replaceAll(test, "fuenf");
+		test = "Uebersetzung der Zahl " + 6 + " nicht möglich " + version;
+		s = s.replaceAll(test, "sechs");
+		test = "Uebersetzung der Zahl " + 7 + " nicht möglich " + version;
+		s = s.replaceAll(test, "sieben");
+		test = "Uebersetzung der Zahl " + 8 + " nicht möglich " + version;
+		s = s.replaceAll(test, "acht");
+		test = "Uebersetzung der Zahl " + 9 + " nicht möglich " + version;
+		s = s.replaceAll(test, "neun");
+		test = "Uebersetzung der Zahl " + 10 + " nicht möglich " + version;
+		s = s.replaceAll(test, "zehn");
 
 		return s;
 	}
