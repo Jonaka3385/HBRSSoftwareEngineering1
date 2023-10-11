@@ -17,6 +17,6 @@ interface Translator {
 	 * Uebersetzt eine numerische Zahl in eine String-basierte
 	 * Repraesentation gemaess der Spezifikation in der Aufgabe 1-2 
 	 */
-	public String translateNumber(int number);
+	String translateNumber(int number);
 
 } 
