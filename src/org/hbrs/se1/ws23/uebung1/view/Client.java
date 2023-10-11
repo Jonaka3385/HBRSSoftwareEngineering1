@@ -18,6 +18,6 @@ public class Client {
 		GermanTranslator translater = Helper.getGermanTranslator();
 		String s = translater.translateNumber(aNumber);
 
-		System.out.println("Das Ergebnis der Berechnung: " + s + "[das Ergebnis an dieser Stelle]"  );
+		System.out.println("Das Ergebnis der Berechnung: " + s);
 	}
 }
