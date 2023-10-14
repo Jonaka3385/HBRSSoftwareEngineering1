@@ -1,7 +1,7 @@
-package org.hbrs.se1.ws23.uebung1.view;
+package uebung1.view;
 
-import org.hbrs.se1.ws23.uebung1.control.GermanTranslator;
-import org.hbrs.se1.ws23.uebung1.control.Helper;
+import uebung1.control.GermanTranslator;
+import uebung1.control.Helper;
 
 public class Client {
 	/*
