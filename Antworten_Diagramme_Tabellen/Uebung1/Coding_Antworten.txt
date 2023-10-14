@@ -1,0 +1,10 @@
+1.)
+-Man kann diverse Vorgänge (wie Objekt-Erzeugungen) in sogenannte Helfer-Klassen auslagern. Das wird häufig genutzt um
+eingeschränkte Sichtbarkeit/Berechtigungen zu umgehen und package exklusive Klassen in anderen Packages verwenden zu
+können, ohne die Sicherheit zu verringern.
+
+-Habe keine angegebenen Video-Tutorien zu diesen Thema gesehen und weiß entsprechend nicht was das "richtige" Pattern
+sein soll. Für Helper-Classes gibt es jedoch meines Wissensstandes nach keine Patterns.
+
+-Ich habe ihn gar nicht angepasst. Man müsste im Code ggf. die Sichtbarkeit anpassen, wenn die Helfer-Klasse im view
+package läge.

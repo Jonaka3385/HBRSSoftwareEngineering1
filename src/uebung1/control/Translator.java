@@ -10,7 +10,6 @@ package org.hbrs.se1.ws23.uebung1.control;
  */
 
 interface Translator {
-	
 	double version = 1.0; // Version des Interface
 	
 	/*
@@ -18,5 +17,4 @@ interface Translator {
 	 * Repraesentation gemaess der Spezifikation in der Aufgabe 1-2 
 	 */
 	String translateNumber(int number);
-
 } 
