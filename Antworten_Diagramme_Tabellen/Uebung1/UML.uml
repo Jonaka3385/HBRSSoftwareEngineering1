@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/jonas/Documents/JetBrains_Projects/IdeaProjects/SE1_2023</OriginalElement>
+  <nodes>
+    <node x="162.35555490841654" y="190.5225243941937">uebung1.control.Helper</node>
+    <node x="524.6013701122997" y="84.40618280558597">uebung1.view.Client</node>
+    <node x="194.4546191355359" y="-13.244753507752804">uebung1.control.GermanTranslator</node>
+    <node x="563.8111154124017" y="260.11442702905526">uebung1.GermanTranslatorTest</node>
+    <node x="-122.14471156546585" y="16.322137587809568">uebung1.control.Translator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="uebung1.control.Helper" target="uebung1.control.GermanTranslator" relationship="CREATE">
+      <point x="151.00044509158346" y="4.7560580628669413E-4" />
+      <point x="495.0" y="228.023" />
+      <point x="495.0" y="58.255" />
+      <point x="128.0003808644641" y="-2.4649224719297536E-4" />
+    </edge>
+    <edge source="uebung1.GermanTranslatorTest" target="uebung1.control.GermanTranslator" relationship="CREATE">
+      <point x="-124.00011541240167" y="-4.270290552881306E-4" />
+      <point x="495.0" y="297.614" />
+      <point x="495.0" y="58.255" />
+      <point x="128.0003808644641" y="-2.4649224719297536E-4" />
+    </edge>
+    <edge source="uebung1.control.GermanTranslator" target="uebung1.control.Translator" relationship="REALIZATION">
+      <point x="-128.0" y="-15.933108904437631" />
+      <point x="128.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0900523560209423" showDependencies="true" x="354.5" y="170.99999999999997" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
