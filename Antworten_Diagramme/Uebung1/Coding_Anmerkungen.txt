@@ -1,0 +1,18 @@
+1)
+-Man kann diverse Vorgänge (wie Objekt-Erzeugungen) in sogenannte Helfer-Klassen auslagern. Das wird häufig genutzt, um eingeschränkte Sichtbarkeit/Berechtigungen zu umgehen und package exklusive Klassen in anderen Packages verwenden zu können, ohne die Sicherheit zu verringern.
+
+-Habe keine angegebenen Video-Tutorien zu diesem Thema gesehen und weiß entsprechend nicht was das "richtige" Pattern sein soll. Für Helper-Classes gibt es jedoch meines Wissensstandes nach keine Patterns.
+
+-Ich habe ihn gar nicht angepasst. Man müsste im Code ggf. die Sichtbarkeit anpassen, wenn die Helfer-Klasse im view package läge.
+
+
+2)
+Stupide prozedurale Abfragen mit der String.replace Methode.
+
+
+3)
+-Man weiß, wo sich die Tests befinden, kann alle Tests (Die gesamte Test-Klasse) auf einmal starten und hat eine übersichtlichere Struktur im Projekt.
+
+-Vereinfachtes Testen durch Partitionieren der Test-Cases, um möglichst wenig Tests durchführen zu müssen.
+
+-Weil die Client-Klasse das Ergebnis der translateNumber()-Methode weiterverarbeitet.
