@@ -1,4 +1,4 @@
-package org.hbrs.se1.ws23.uebung2;
+package uebung2;
 public interface Member {
 
     /**
@@ -7,5 +7,5 @@ public interface Member {
      * Die ID dient als Primärschlüssel zur Unterscheidung aller Member-Objekte.
      */
     
-    public Integer getID();
+    Integer getID();
 }
