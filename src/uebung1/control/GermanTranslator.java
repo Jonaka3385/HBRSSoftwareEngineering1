@@ -1,7 +1,6 @@
 package uebung1.control;
 
 public class GermanTranslator implements Translator {
-
 	public String date = "Okt/2023"; // Default-Wert
 
 	/*

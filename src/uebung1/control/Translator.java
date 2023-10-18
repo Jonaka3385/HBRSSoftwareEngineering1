@@ -8,7 +8,6 @@ package uebung1.control;
  * @author saschaalda
  *
  */
-
 interface Translator {
 	double version = 1.0; // Version des Interface
 	

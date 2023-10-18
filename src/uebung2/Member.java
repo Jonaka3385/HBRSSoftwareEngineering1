@@ -1,4 +1,5 @@
 package uebung2;
+
 public interface Member {
 
     /**

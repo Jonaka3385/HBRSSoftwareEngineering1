@@ -2,10 +2,10 @@ package uebung1;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import uebung1.control.GermanTranslator;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import uebung1.control.GermanTranslator;
 
 class GermanTranslatorTest {
     GermanTranslator translator;
