@@ -13,7 +13,7 @@ public class Container {
     }
 
     public void addMember(@NotNull Member member) throws ContainerException {
-        if (containsAt(member.getID()) == -1) throw new ContainerException(member.getID().toString());
+        if (containsAt(member.getID()) != -1) throw new ContainerException(member.getID().toString());
         else list.add(member);
     }
 
