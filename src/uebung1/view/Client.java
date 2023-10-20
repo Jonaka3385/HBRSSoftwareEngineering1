@@ -1,6 +1,7 @@
 package uebung1.view;
 
-import uebung1.control.Helper;
+import uebung1.control.TranslatorFactory;
+import uebung1.control.Translator;
 
 public class Client {
 	/*
@@ -14,7 +15,8 @@ public class Client {
 		// aufgerufen werden.
 		//
 		// Strenge Implementierung gegen das Interface Translator gewuenscht!
-		String s = Helper.getGermanTranslator().translateNumber(aNumber);
+		Translator translator = TranslatorFactory.createGermanTranslator();
+		String s = translator.translateNumber(aNumber);
 
 		System.out.println("Das Ergebnis der Berechnung: " + s);
 	}

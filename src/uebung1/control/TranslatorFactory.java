@@ -3,9 +3,9 @@ package uebung1.control;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public class Helper {
+public class TranslatorFactory implements Factory {
     @Contract(value = " -> new", pure = true)
-    public static @NotNull GermanTranslator getGermanTranslator() {
+    public static @NotNull Translator createGermanTranslator() {
         return new GermanTranslator();
     }
 }
