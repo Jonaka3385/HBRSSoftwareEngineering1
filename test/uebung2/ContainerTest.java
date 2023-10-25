@@ -32,7 +32,6 @@ class ContainerTest {
     @Test
     void deleteMemberTest() {
         Member m1 = new StringMember(0, "A");
-        Member m2 = new DoubleMember(1, 1.5);
 
         assertEquals(1, container.deleteMember(0));
         try {
