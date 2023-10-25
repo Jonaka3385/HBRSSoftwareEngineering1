@@ -35,7 +35,6 @@ public class Container {
     }
 
     public void dump() {
-        Member current;
         for (Member member : list) {
             System.out.println(member.toString());
         }
