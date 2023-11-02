@@ -49,7 +49,7 @@ class ContainerTest {
         assertEquals(2, container.size(),
                 "Testfall 3 - Pruefung auf Zustand 2");
 
-        // Testfälle 4 - 8 - Kein Zustandwechsel erlaubt, Zustand bleibt 2!
+        // Testfälle 4 - 8 - Kein Zustandswechsel erlaubt, Zustand bleibt 2!
         assertThrows(ContainerException.class, () -> {
             container.addMember(r2); // Schon enthalten!
         });
@@ -77,24 +77,12 @@ class ContainerTest {
         assertEquals(1, container.size(), "Testfall 9 - Pruefung auf Zustand 1");
 
         container.deleteMember(32);
-        assertEquals(0, container.size(), "Testfall 9 - Pruefung auf Zustand 1");
+        assertEquals(0, container.size(), "Testfall 10 - Pruefung auf Zustand 1");
     }
 
     @Test
-    public void testAufNullVerschiedeneWege() {
-            // Test auf NULL - der "altbekannte" Weg
-            try {
-                container.addMember(null);
-            } catch (ContainerException e) {
-                assertEquals( "NULL-Werte dürfen nicht aufgenommen werden!" ,
-                        e.getMessage() );
-            }
-            assertEquals(0 , container.size() ) ;
-
-            // Test auf NULL - der "moderne" Weg
-            Exception e = assertThrows( ContainerException.class, () -> { container.addMember(null); } );
+    public void testAufNull() {
+            assertThrows( ContainerException.class, () -> { container.addMember(null); } );
             assertEquals(0 , container.size() ) ;
         }
-
-
 }

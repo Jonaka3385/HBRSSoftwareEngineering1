@@ -4,9 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Container {
@@ -28,16 +26,15 @@ public class Container {
 	 * Methode zum Hinzufuegen einer Member.
 	 * @throws ContainerException
 	 */ 
-	public void addMember ( Member r ) throws ContainerException {
-
+	public void addMember(Member r) throws ContainerException {
 		if (r == null) {
             throw new ContainerException();
 		}
 
 		if (contains(r)) {
-            throw new ContainerException(  r.getID().toString() );
+            throw new ContainerException(r.getID().toString());
 		}
-		liste.add( r );
+		liste.add(r);
 	} 
 	
 	/*
@@ -48,7 +45,7 @@ public class Container {
 		Integer ID = r.getID();
 		for ( Member rec : liste) {
 			// wichtig: Check auf die Values innerhalb der Integer-Objekte!
-			if ( rec.getID().intValue() == ID.intValue() ) {
+			if (rec.getID().intValue() == ID.intValue()) {
 				return true;
 			}
 		}
@@ -61,9 +58,10 @@ public class Container {
 	 * In Praxis durchaus verwendet: C-Programme; beim HTTP-Protokoll; SAP-Anwendung (R3); Mond-Landung ;-)
 	 * 
 	 */
-	public String deleteMember( Integer id ) {
-		Member rec = getMember( id );
-		if (rec == null) return "Member nicht enthalten - ERROR"; else {
+	public String deleteMember(Integer id) {
+		Member rec = getMember(id);
+		if (rec == null) return "Member nicht enthalten - ERROR";
+		else {
 			liste.remove(rec);
 			return "Member mit der ID " + id + " konnte geloescht werden";
 		}
@@ -88,36 +86,6 @@ public class Container {
 	public void dump(){
 		System.out.println("Ausgabe aller Member-Objekte: ");
 
-		// Loesung mit Iterator:
-        for (Member p : liste) {
-            System.out.println("ID: " + p.getID());
-        }
-		
-		// Loesung Nr. 1 mit For each Schleife: Sequentielle Bearbeitung der Schleife
-		for ( Member p : liste ) {
-			System.out.println( p.toString()  );
-		}
-		
-		// Loesung Nr. 2:
-		// Implementierung mit forEach: eine Iteration wird hier nicht mehr
-		// explizit beschrieben, sondern der Implementierung der Methode
-		// forEach überlassen! Consumer: eine Parametrisierung eines Objekts mit einer Anweisung (Funktion),
-		// die eine Aktion auf einem Element vom Typ T (hier: Member) darstellt. 
-		// Consumer<T> ist ein Functional Interface
-		liste.forEach(new Consumer<>() {
-            @Override
-            public void accept(Member p) {
-                // Die Funktion
-                System.out.println(p.toString());
-            }
-        });
-
-		// Loesung Nr. 3:
-		// Abkürzende Schreibweise für forEach mit einem Lambda Ausdruck
-		// Ein Objekt wird mit einer Anweisung (Funktion) parametrisiert
-		liste.forEach(System.out::println);
-
-		// Der Type Member kann auf der linken Seite weggelassen werden!
 		liste.forEach(System.out::println);
 
 		// Ueber die Streaming-Funktion koennen weitere Filterungen durchgefuehrt werden
@@ -125,18 +93,18 @@ public class Container {
 		// sowie die Uebung Nr. 4:		
 		// Variante 4.1 (mit zwei Filtern und mit foreach als Reduzierung (reduce)):
 		liste.stream() // Parallelisierung hier moeglich mit .parallelstream()
-		      .filter( element -> element.getID() > 20 )
-			  .filter(element -> element.getID() < 1000 )
+		      .filter(element -> element.getID() > 20)
+			  .filter(element -> element.getID() < 1000)
 			  .forEach(System.out::println);
 
 		// Variante 4.2 (mit zwei Filtern und einer Reduzierung (reduce) auf eine Liste ohne foreach):		
 		List<Integer> newListe = liste.stream() // Parallelisierung hier moeglich mit .parallelstream()
-								      .filter( element -> element.getID() > 20 )
-								      .filter(element -> element.getID() < 1000 )
+								      .filter(element -> element.getID() > 20)
+								      .filter(element -> element.getID() < 1000)
 								      .map(Member::getID)
 								      .collect( Collectors.toList() );
 								     
-		System.out.println( newListe );
+		System.out.println(newListe);
 
         // Loesung Nr. 4:
         // Vorteil: Möglichkeit der parallelen Verarbeitung der Liste möglich
@@ -147,8 +115,8 @@ public class Container {
         // Variante fuer die Variante Nr. 4.2:
 		// Achtung: diese Variante ist im Gegensatz zur 4.2 nicht parallelisierbar!
 		List<Integer> newListe2 = new ArrayList<>();
-		for ( Member p : liste ) {
-			if (p.getID() > 20 && p.getID()<1000 ) {
+		for (Member p : liste) {
+			if (p.getID() > 20 && p.getID()<1000) {
 				newListe2.add(p.getID());
 			}
 		}
@@ -160,8 +128,8 @@ public class Container {
 	 * 
 	 */
 	private @Nullable Member getMember(Integer id) {
-		for ( Member rec : liste) {
-			if (id == rec.getID().intValue() ){
+		for (Member rec : liste) {
+			if (id == rec.getID().intValue()){
 				return rec;
 			}
 		}

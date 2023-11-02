@@ -1,5 +1,8 @@
 package uebung3;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,38 +23,36 @@ public class GenericContainer <E extends Member> {
 	 * Methode zum Hinzufuegen einer Member.
 	 * @throws ContainerException
 	 */ 
-	public void addMember ( E r ) throws ContainerException {
-		if ( contains( r ) == true ) {
-			ContainerException ex = new ContainerException( r.getID().toString() );
-			throw ex;
+	public void addMember (E r) throws ContainerException {
+		if (contains(r)) {
+            throw new ContainerException(r.getID().toString());
 		}
 		liste.add(r);
-		
 	} 
 	
 	/*
 	 * Methode zur Ueberpruefung, ob ein Member-Objekt in der Liste enthalten ist
 	 * 
 	 */
-	private boolean contains(E r) {
+	private boolean contains(@NotNull E r) {
 		Integer ID = r.getID();
-		for ( E rec : liste) {
+		for (E rec : liste) {
 			// wichtig: Check auf die Values innerhalb der Integer-Objekte!
-			if ( (rec).getID().intValue() == ID.intValue() ) {
+			if ((rec).getID().intValue() == ID.intValue()) {
 				return true;
 			}
 		}
 		return false;
-		
-		// liste.contains(r), falls equals-Methode in Member ueberschrieben.
 	}
+
 	/*
 	 * Methode zum Loeschen einer Member
 	 * 
 	 */
-	public String deleteMember( Integer id ) {
-		Member rec = getMember( id );
-		if (rec == null) return "Member nicht enthalten - ERROR"; else {
+	public String deleteMember(Integer id) {
+		Member rec = getMember(id);
+		if (rec == null) return "Member nicht enthalten - ERROR";
+		else {
 			liste.remove(rec);
 			return "Member mit der ID " + id + " konnte geloescht werden";
 		}
@@ -72,31 +73,22 @@ public class GenericContainer <E extends Member> {
 	 * 
 	 */
 	public void dump(){
-		System.out.println("Ausgabe aller Memberen: ");
-		// Loesung mit For each:
+		System.out.println("Ausgabe aller Members: ");
 		for ( E p : liste ) {
-			System.out.println( p.toString()  );
+			System.out.println(p.toString());
 		}
-		
-		// Loesung mit Iterator:
-		// Iterator<Member> i = liste.iterator();
-		//  while (  i.hasNext() ) {
-		//	   Member p = i.next();
-		//	   System.out.println("ID: " + p.getID() );
-		//  }
 	}
 
 	/*
 	 * Interne Methode zur Ermittlung einer Member
 	 * 
 	 */
-	private Member getMember(Integer id) {
-		for ( E rec : liste) {
+	private @Nullable Member getMember(Integer id) {
+		for (E rec : liste) {
 			if (id == (rec).getID().intValue() ){
-				return (Member) rec;
+				return rec;
 			}
 		}
 		return null;
 	}
-
 }

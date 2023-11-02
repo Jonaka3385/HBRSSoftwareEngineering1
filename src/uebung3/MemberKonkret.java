@@ -1,10 +1,9 @@
 package uebung3;
 
 public class MemberKonkret implements Member {
+	private Integer id;
 	
-	private Integer id = null;
-	
-	public MemberKonkret( Integer id ){
+	public MemberKonkret(Integer id){
 		this.id = id;
 	}
 
@@ -13,7 +12,7 @@ public class MemberKonkret implements Member {
 		return this.id;
 	}
 	
-	public void setID ( Integer id ) {
+	public void setID (Integer id) {
 		this.id = id;
 	}
 
