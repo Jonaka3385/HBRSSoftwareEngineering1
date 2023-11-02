@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/jonas/Documents/JetBrains_Projects/IdeaProjects/SE1_2023</OriginalElement>
+  <nodes>
+    <node x="877.4666666666665" y="9.0">uebung3.PersistenceException</node>
+    <node x="935.4666666666665" y="-138.0">uebung3.PersistenceException.ExceptionType</node>
+    <node x="934.320531400966" y="136.0">uebung3.PersistenceStrategy</node>
+    <node x="565.3570048309177" y="308.0">uebung3.PersistenceStrategyStream</node>
+    <node x="390.82053140096605" y="633.5">uebung3.GenericContainer</node>
+    <node x="914.0031400966182" y="364.5">uebung3.ContainerException</node>
+    <node x="49.999999999999886" y="689.0">uebung3.MemberView</node>
+    <node x="703.820531400966" y="589.0">uebung3.Container</node>
+    <node x="234.10652173913036" y="375.5">uebung3.Member</node>
+    <node x="285.8754830917874" y="996.0">uebung3.ContainerTest</node>
+    <node x="-194.0" y="677.5">uebung3.MemberKonkret</node>
+    <node x="6.708816425120631" y="1018.0">uebung3.Client</node>
+    <node x="1189.0031400966182" y="331.0">uebung3.PersistenceStrategyMongoDB</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="uebung3.GenericContainer" target="uebung3.Member" relationship="DEPENDENCY">
+      <point x="-131.49953140096602" y="0.0" />
+      <point x="374.0" y="726.5" />
+      <point x="374.0" y="401.5" />
+      <point x="61.50047826086967" y="0.0" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.Container" relationship="CREATE">
+      <point x="14.999516908212627" y="-59.5" />
+      <point x="421.375" y="980.0" />
+      <point x="820.321" y="980.0" />
+      <point x="-14.99953140096602" y="137.5" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.MemberView" relationship="CREATE">
+      <point x="-120.50048309178737" y="-15.0" />
+      <point x="265.0" y="1040.5" />
+      <point x="265.0" y="947.5" />
+      <point x="162.5" y="947.5" />
+      <point x="1.1368683772161603E-13" y="37.5" />
+    </edge>
+    <edge source="uebung3.PersistenceException" target="uebung3.PersistenceException.ExceptionType" relationship="TO_ONE">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="uebung3.Client" target="uebung3.Container" relationship="DEPENDENCY">
+      <point x="0.0" y="37.5" />
+      <point x="103.70881642512063" y="1132.5" />
+      <point x="850.321" y="1132.5" />
+      <point x="15.00046859903398" y="137.5" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategyMongoDB" target="uebung3.PersistenceStrategy" relationship="REALIZATION">
+      <point x="-126.00314009661815" y="-70.5" />
+      <point x="1230.5" y="306.0" />
+      <point x="1052.821" y="306.0" />
+      <point x="-14.999531400966134" y="59.0" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.PersistenceException" relationship="DEPENDENCY">
+      <point x="131.50046859903398" y="0.0" />
+      <point x="1541.503" y="726.5" />
+      <point x="1541.503" y="281.0" />
+      <point x="916.821" y="281.0" />
+      <point x="-154.64566666666644" y="37.5" />
+    </edge>
+    <edge source="uebung3.GenericContainer" target="uebung3.GenericContainer" relationship="DEPENDENCY">
+      <point x="-2.9450483091786737" y="93.0" />
+      <point x="519.3754830917874" y="881.5" />
+      <point x="679.0" y="881.5" />
+      <point x="679.0" y="741.5" />
+      <point x="131.5" y="15.0" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.Member" relationship="TO_MANY">
+      <point x="0.0" y="-137.5" />
+      <point x="835.320531400966" y="527.5" />
+      <point x="473.32053140096605" y="527.5" />
+      <point x="473.32053140096605" y="386.5" />
+      <point x="61.5" y="-15.0" />
+    </edge>
+    <edge source="uebung3.Client" target="uebung3.MemberKonkret" relationship="CREATE">
+      <point x="97.00018357487937" y="-15.0" />
+      <point x="223.0" y="1040.5" />
+      <point x="223.0" y="962.5" />
+      <point x="-82.0" y="962.5" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.Member" relationship="DEPENDENCY">
+      <point x="-120.50048309178737" y="0.0" />
+      <point x="244.0" y="1055.5" />
+      <point x="244.0" y="962.5" />
+      <point x="374.0" y="962.5" />
+      <point x="374.0" y="401.5" />
+      <point x="61.50047826086967" y="0.0" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.Container" relationship="CREATE">
+      <point x="-14.99953140096602" y="137.5" />
+      <point x="820.321" y="980.0" />
+      <point x="820.321" y="980.0" />
+      <point x="-14.99953140096602" y="137.5" />
+    </edge>
+    <edge source="uebung3.MemberKonkret" target="uebung3.Member" relationship="REALIZATION">
+      <point x="0.0" y="-49.0" />
+      <point x="-82.0" y="401.5" />
+      <point x="-61.5" y="0.0" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.ContainerException" relationship="CREATE">
+      <point x="-131.49953140096602" y="0.0" />
+      <point x="679.0" y="726.5" />
+      <point x="679.0" y="571.5" />
+      <point x="1041.503" y="571.5" />
+      <point x="-1.400966182245611E-4" y="37.0" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.MemberKonkret" relationship="CREATE">
+      <point x="-120.50048309178737" y="15.0" />
+      <point x="223.0" y="1070.5" />
+      <point x="223.0" y="962.5" />
+      <point x="-82.0" y="962.5" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="uebung3.Client" target="uebung3.Member" relationship="DEPENDENCY">
+      <point x="97.00018357487937" y="0.0" />
+      <point x="244.0" y="1055.5" />
+      <point x="244.0" y="962.5" />
+      <point x="374.0" y="962.5" />
+      <point x="374.0" y="401.5" />
+      <point x="61.50047826086967" y="0.0" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategy" target="uebung3.PersistenceException" relationship="DEPENDENCY">
+      <point x="4.685990338657575E-4" y="59.0" />
+      <point x="1067.821" y="281.0" />
+      <point x="916.821" y="281.0" />
+      <point x="-154.64566666666644" y="37.5" />
+    </edge>
+    <edge source="uebung3.PersistenceException.ExceptionType" target="uebung3.PersistenceException" relationship="INNER_CLASS">
+      <point x="15.0" y="48.5" />
+      <point x="15.0" y="-37.5" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategyMongoDB" target="uebung3.PersistenceException" relationship="DEPENDENCY">
+      <point x="-1.400966182245611E-4" y="-70.5" />
+      <point x="1356.503" y="281.0" />
+      <point x="916.821" y="281.0" />
+      <point x="-154.64566666666644" y="37.5" />
+    </edge>
+    <edge source="uebung3.Client" target="uebung3.MemberView" relationship="CREATE">
+      <point x="97.00018357487937" y="30.0" />
+      <point x="265.0" y="1085.5" />
+      <point x="265.0" y="947.5" />
+      <point x="162.5" y="947.5" />
+      <point x="1.1368683772161603E-13" y="37.5" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.PersistenceStrategyStream" relationship="CREATE">
+      <point x="15.0" y="-137.5" />
+      <point x="122.46352657004832" y="93.5" />
+    </edge>
+    <edge source="uebung3.GenericContainer" target="uebung3.ContainerException" relationship="CREATE">
+      <point x="131.50046859903398" y="0.0" />
+      <point x="679.0" y="726.5" />
+      <point x="679.0" y="571.5" />
+      <point x="1041.503" y="571.5" />
+      <point x="-1.400966182245611E-4" y="37.0" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategyStream" target="uebung3.PersistenceException" relationship="CREATE">
+      <point x="157.10966183574874" y="-93.5" />
+      <point x="-186.5" y="37.5" />
+    </edge>
+    <edge source="uebung3.MemberView" target="uebung3.Member" relationship="DEPENDENCY">
+      <point x="112.50000000000011" y="0.0" />
+      <point x="374.0" y="726.5" />
+      <point x="374.0" y="401.5" />
+      <point x="61.50047826086967" y="0.0" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.Container" relationship="TO_ONE">
+      <point x="-4.8309178737326874E-4" y="-59.5" />
+      <point x="406.375" y="963.0" />
+      <point x="835.321" y="963.0" />
+      <point x="4.6859903397944436E-4" y="137.5" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategyStream" target="uebung3.PersistenceStrategyStream" relationship="DEPENDENCY">
+      <point x="137.46352657004832" y="93.5" />
+      <point x="865.320531400966" y="542.5" />
+      <point x="921.5031400966182" y="542.5" />
+      <point x="921.5031400966182" y="456.0" />
+      <point x="162.5" y="54.5" />
+    </edge>
+    <edge source="uebung3.PersistenceStrategyStream" target="uebung3.PersistenceStrategy" relationship="REALIZATION">
+      <point x="162.49999516908224" y="-54.5" />
+      <point x="1161.503" y="347.0" />
+      <point x="1161.503" y="306.0" />
+      <point x="1052.821" y="306.0" />
+      <point x="-14.999531400966134" y="59.0" />
+    </edge>
+    <edge source="uebung3.ContainerTest" target="uebung3.ContainerException" relationship="DEPENDENCY">
+      <point x="0.0" y="59.5" />
+      <point x="406.3754830917874" y="1147.5" />
+      <point x="1056.503" y="1147.5" />
+      <point x="14.999859903381775" y="37.0" />
+    </edge>
+    <edge source="uebung3.Container" target="uebung3.Container" relationship="TO_ONE">
+      <point x="4.6859903397944436E-4" y="137.5" />
+      <point x="835.321" y="963.0" />
+      <point x="835.321" y="963.0" />
+      <point x="4.6859903397944436E-4" y="137.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.41835706957884006" showDependencies="true" x="765.2749352892274" y="481.04711439343623" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
