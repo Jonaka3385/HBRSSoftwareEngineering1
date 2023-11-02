@@ -5,7 +5,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Container {
 	private static Container instance;
@@ -76,51 +75,8 @@ public class Container {
 		return liste.size();
 	}
 
-	
-	/*
-	 * Methode zur Ausgabe aller IDs der Member-Objekte. Es werden verschiedene Varianten vorgestellt!
-	 * Fuer eine ordnungsgemaesse Ausgabe sollten die unpassenden Varianten und Loesungen
-	 * natuerlich auskommentiert werden.
-	 * 
-	 */
-	public void dump(){
-		System.out.println("Ausgabe aller Member-Objekte: ");
-
-		liste.forEach(System.out::println);
-
-		// Ueber die Streaming-Funktion koennen weitere Filterungen durchgefuehrt werden
-		// Dieses Vorgehen wird auch als Pattern Filter-Map-Reduce bezeichnet (vgl. Kapitel 4 bzw. 6
-		// sowie die Uebung Nr. 4:		
-		// Variante 4.1 (mit zwei Filtern und mit foreach als Reduzierung (reduce)):
-		liste.stream() // Parallelisierung hier moeglich mit .parallelstream()
-		      .filter(element -> element.getID() > 20)
-			  .filter(element -> element.getID() < 1000)
-			  .forEach(System.out::println);
-
-		// Variante 4.2 (mit zwei Filtern und einer Reduzierung (reduce) auf eine Liste ohne foreach):		
-		List<Integer> newListe = liste.stream() // Parallelisierung hier moeglich mit .parallelstream()
-								      .filter(element -> element.getID() > 20)
-								      .filter(element -> element.getID() < 1000)
-								      .map(Member::getID)
-								      .collect( Collectors.toList() );
-								     
-		System.out.println(newListe);
-
-        // Loesung Nr. 4:
-        // Vorteil: Möglichkeit der parallelen Verarbeitung der Liste möglich
-        // Erhöht die Performance der Anwendung
-        liste.parallelStream().forEach(System.out::println);
-
-
-        // Variante fuer die Variante Nr. 4.2:
-		// Achtung: diese Variante ist im Gegensatz zur 4.2 nicht parallelisierbar!
-		List<Integer> newListe2 = new ArrayList<>();
-		for (Member p : liste) {
-			if (p.getID() > 20 && p.getID()<1000) {
-				newListe2.add(p.getID());
-			}
-		}
-		System.out.println(newListe2);
+	public List<Member> getCurrentList() {
+		return liste;
 	}
 
 	/*

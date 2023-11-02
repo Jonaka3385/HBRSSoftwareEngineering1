@@ -1,7 +1,5 @@
+package uebung3;
 
-package solutions.uebung2.test;
-
-import uebung3.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,9 +66,9 @@ class ContainerTest {
         container.size(); // Size darf keinen Zustandswechsel auslösen!
         assertEquals(2, container.size(), "Testfall 7 - Pruefung auf Zustand 2");
 
-        container.dump(); // Dump darf keinen Zustandswechsel auslösen!
+        MemberView view = new MemberView();
+        view.dump(container.getCurrentList()); // Dump darf keinen Zustandswechsel auslösen!
         assertEquals(2, container.size(), "Testfall 8 - Pruefung auf Zustand 2");
-
 
         // Testfälle 9 - 10. Zurück auf Zustand 0
         container.deleteMember(12);
