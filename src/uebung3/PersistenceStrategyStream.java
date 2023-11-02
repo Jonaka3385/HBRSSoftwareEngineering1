@@ -13,38 +13,38 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
         this.location = location;
     }
 
-    @Override
     /**
      * Method for opening the connection to a stream (here: Input- and Output-Stream)
      * In case of having problems while opening the streams, leave the code in methods load
      * and save.
      */
+    @Override
     public void openConnection() throws PersistenceException {
 
     }
 
-    @Override
     /**
      * Method for closing the connections to a stream
      */
+    @Override
     public void closeConnection() throws PersistenceException {
 
     }
 
-    @Override
     /**
      * Method for saving a list of Member-objects to a disk (HDD)
      */
+    @Override
     public void save(List<E> member) throws PersistenceException  {
 
     }
 
-    @Override
     /**
      * Method for loading a list of Member-objects from a disk (HDD)
      * Some coding examples come for free :-)
      * Take also a look at the import statements above ;-!
      */
+    @Override
     public List<E> load() throws PersistenceException  {
         // Some Coding hints ;-)
 
