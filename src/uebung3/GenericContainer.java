@@ -1,4 +1,4 @@
-package uebung3.persistence;
+package uebung3;
 
 import java.util.ArrayList;
 import java.util.List;

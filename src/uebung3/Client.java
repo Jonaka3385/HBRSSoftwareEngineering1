@@ -1,4 +1,4 @@
-package uebung3.persistence;
+package uebung3;
 
 public class Client {
 

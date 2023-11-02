@@ -1,7 +1,7 @@
 
-package org.hbrs.se1.ws23.solutions.uebung2.test;
+package solutions.uebung2.test;
 
-import org.hbrs.se1.ws23.solutions.uebung2.*;
+import uebung3.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
