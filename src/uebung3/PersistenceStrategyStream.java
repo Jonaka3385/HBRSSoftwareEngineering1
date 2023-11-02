@@ -1,11 +1,18 @@
 package uebung3;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
 
     // URL of file, in which the objects are stored
-    private String location = "objects.ser";
+    private String location = "/Users/jonas/Documents/JetBrains_Projects/IdeaProjects/SE1_2023/src/uebung3/file.txt";
+
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
 
     // Backdoor method used only for testing purposes, if the location should be changed in a Unit-Test
     // Example: Location is a directory (Streams do not like directories, so try this out ;-)!
@@ -20,7 +27,33 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      */
     @Override
     public void openConnection() throws PersistenceException {
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(location);
+        }
+        catch (FileNotFoundException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "No File found");
+        }
+        try {
+            oos = new ObjectOutputStream(fos);
+        }
+        catch (IOException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "ObjectOutputStream fail");
+        }
 
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(location);
+        }
+        catch (FileNotFoundException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "No File found");
+        }
+        try {
+            ois = new ObjectInputStream(fis);
+        }
+        catch (IOException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "ObjectOutputStream fail");
+        }
     }
 
     /**
@@ -28,15 +61,30 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      */
     @Override
     public void closeConnection() throws PersistenceException {
-
+        try {
+            oos.close();
+            ois.close();
+        }
+        catch (IOException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "closing failed");
+        }
     }
 
     /**
      * Method for saving a list of Member-objects to a disk (HDD)
      */
     @Override
-    public void save(List<E> member) throws PersistenceException  {
-
+    public void save(@NotNull List<E> member) throws PersistenceException {
+        openConnection();
+        for (E m : member) {
+            try {
+                oos.writeObject(m);
+            }
+            catch (IOException e) {
+                throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "writing failed");
+            }
+        }
+        closeConnection();
     }
 
     /**
@@ -46,26 +94,21 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      */
     @Override
     public List<E> load() throws PersistenceException  {
-        // Some Coding hints ;-)
+        List<E> liste = new ArrayList<>();
 
-        // ObjectInputStream ois = null;
-        // FileInputStream fis = null;
-        // List<...> newListe =  null;
-        //
-        // Initiating the Stream (can also be moved to method openConnection()... ;-)
-        // fis = new FileInputStream( " a location to a file" );
-
-        // Tipp: Use a directory (ends with "/") to implement a negative test case ;-)
-        // ois = new ObjectInputStream(fis);
-
-        // Reading and extracting the list (try .. catch ommitted here)
-        // Object obj = ois.readObject();
-
-        // if (obj instanceof List<?>) {
-        //       newListe = (List) obj;
-        // return newListe
-
-        // and finally close the streams (guess where this could be...?)
-        return null;
+        openConnection();
+        try {
+            for (; ; ) {
+                liste.add((E) ois.readObject());
+            }
+        }
+        catch (EOFException e) {
+            //End of Stream
+        }
+        catch (ClassNotFoundException | IOException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "reading failed");
+        }
+        closeConnection();
+        return liste;
     }
 }

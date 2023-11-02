@@ -93,14 +93,9 @@ public class Container {
 	}
 
 	public void store() throws PersistenceException {
-		try {
-			var p = new PersistenceStrategyStream<Member>();
-			p.save(liste);
-		}
-		catch(PersistenceException e) {
-			throw e;
-		}
-	}
+        var p = new PersistenceStrategyStream<Member>();
+        p.save(liste);
+    }
 
 	public void load() throws PersistenceException {
 		var p = new PersistenceStrategyStream<Member>();

@@ -1,6 +1,8 @@
 package uebung3;
 
-public interface Member {
+import java.io.Serializable;
+
+public interface Member extends Serializable {
 
 	/**
 	 * Die ID ist über einen Konstruktor einer Klasse, welches dieses Interface implementiert,
