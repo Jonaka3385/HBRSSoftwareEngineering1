@@ -135,4 +135,19 @@ public class Container {
 		}
 		return null;
 	}
+
+	public void store() throws PersistenceException {
+		try {
+			var p = new PersistenceStrategyStream<Member>();
+			p.save(liste);
+		}
+		catch(PersistenceException e) {
+			throw e;
+		}
+	}
+
+	public void load() throws PersistenceException {
+		var p = new PersistenceStrategyStream<Member>();
+		liste = p.load();
+	}
 }
