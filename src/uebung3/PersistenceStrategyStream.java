@@ -3,13 +3,12 @@ package uebung3;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
+public class PersistenceStrategyStream<E extends Serializable> implements PersistenceStrategy<E> {
 
     // URL of file, in which the objects are stored
-    private String location = "src/uebung3/file.txt";
+    private String location = "src/uebung3/file.tmp";
 
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
@@ -74,15 +73,14 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      * Method for saving a list of Member-objects to a disk (HDD)
      */
     @Override
-    public void save(@NotNull List<E> member) throws PersistenceException {
+    public void save(@NotNull List<E> list) throws PersistenceException {
         openConnection();
-        for (E m : member) {
-            try {
-                oos.writeObject(m);
-            }
-            catch (IOException e) {
-                throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "writing failed");
-            }
+        try {
+            oos.writeObject(list);
+            oos.flush();
+        }
+        catch (IOException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "writing failed");
         }
         closeConnection();
     }
@@ -94,21 +92,16 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      */
     @Override
     public List<E> load() throws PersistenceException  {
-        List<E> liste = new ArrayList<>();
-
+        List<E> list = null;
         openConnection();
         try {
-            for (; ; ) {
-                liste.add((E) ois.readObject());
-            }
-        }
-        catch (EOFException e) {
-            //End of Stream
+            Object obj = ois.readObject();
+            if (obj instanceof List<?> newList) list = (List<E>) newList;
         }
         catch (ClassNotFoundException | IOException e) {
             throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "reading failed");
         }
         closeConnection();
-        return liste;
+        return list;
     }
 }
