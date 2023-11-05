@@ -8,7 +8,7 @@ import java.util.List;
 public class PersistenceStrategyStream<E extends Serializable> implements PersistenceStrategy<E> {
 
     // URL of file, in which the objects are stored
-    private String location = "src/uebung3/file.tmp";
+    private String location = "src/uebung3/file.ser";   //tried with .ser, .tmp, .txt
 
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
