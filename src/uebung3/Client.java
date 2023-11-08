@@ -6,7 +6,14 @@ public class Client {
         Container container = Container.getInstance();
         Member m1 = new MemberKonkret(1);
         MemberView view = new MemberView();
-        container.setStrategy(new PersistenceStrategyStream<>());
+        PersistenceStrategy<Member> strategy = new PersistenceStrategyStream<>();
+        container.setStrategy(strategy);
+        try {
+            strategy.openConnection();
+        }
+        catch (PersistenceException e) {
+            throw new RuntimeException("openConnection failed: " + e);
+        }
         try {
             container.addMember(m1);
             view.dump(container.getCurrentList());
@@ -42,16 +49,20 @@ public class Client {
         catch (Exception e) {
             throw new RuntimeException("load failed: " + e);
         }
-
-        container.setStrategy(new PersistenceStrategyMongoDB<>());
         try {
-            container.store();
+            strategy.closeConnection();
         }
         catch (PersistenceException e) {
-            System.out.println("PersistenceException: " + e.getExceptionTypeType());
+            throw new RuntimeException("closeConnection failed: " + e);
         }
-        catch (UnsupportedOperationException e) {
-            System.out.println("Mongo not implemented: " + e);
+
+        strategy = new PersistenceStrategyMongoDB<>();
+        container.setStrategy(strategy);
+        try {
+            strategy.openConnection();
+        }
+        catch (Exception e) {
+            System.out.println("Trying open MongoDB Connection: " + e);
         }
     }
 }

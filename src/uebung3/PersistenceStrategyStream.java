@@ -8,7 +8,7 @@ import java.util.List;
 public class PersistenceStrategyStream<E extends Serializable> implements PersistenceStrategy<E> {
 
     // URL of file, in which the objects are stored
-    private String location = "src/uebung3/file.ser";   //tried with .ser, .tmp, .txt
+    private String location = "src/uebung3/file.ser";
 
     private FileOutputStream fos;
     private ObjectOutputStream oos;
@@ -76,7 +76,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
      */
     @Override
     public void save(@NotNull List<E> list) throws PersistenceException {
-        openConnection();
         try {
             oos.writeObject(list);
             oos.flush();
@@ -84,7 +83,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
         catch (IOException e) {
             throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "writing failed");
         }
-        closeConnection();
     }
 
     /**
@@ -95,7 +93,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
     @Override
     public List<E> load() throws PersistenceException  {
         List<E> list = null;
-        openConnection();
         try {
             Object obj = ois.readObject();
             if (obj instanceof List<?> newList) list = (List<E>) newList;
@@ -103,7 +100,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
         catch (ClassNotFoundException | IOException e) {
             throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "reading failed");
         }
-        closeConnection();
         return list;
     }
 }
