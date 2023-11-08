@@ -10,8 +10,10 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
     // URL of file, in which the objects are stored
     private String location = "src/uebung3/file.ser";   //tried with .ser, .tmp, .txt
 
-    private ObjectInputStream ois;
+    private FileOutputStream fos;
     private ObjectOutputStream oos;
+    private FileInputStream fis;
+    private ObjectInputStream ois;
 
     // Backdoor method used only for testing purposes, if the location should be changed in a Unit-Test
     // Example: Location is a directory (Streams do not like directories, so try this out ;-)!
@@ -26,7 +28,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
      */
     @Override
     public void openConnection() throws PersistenceException {
-        FileOutputStream fos;
         try {
             fos = new FileOutputStream(location);
         }
@@ -40,7 +41,6 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
             throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable, "ObjectOutputStream fail");
         }
 
-        FileInputStream fis;
         try {
             fis = new FileInputStream(location);
         }
@@ -61,7 +61,9 @@ public class PersistenceStrategyStream<E extends Serializable> implements Persis
     @Override
     public void closeConnection() throws PersistenceException {
         try {
+            fos.close();
             oos.close();
+            fis.close();
             ois.close();
         }
         catch (IOException e) {
