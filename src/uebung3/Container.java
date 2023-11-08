@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
-	private String strategy = "stream";
+	private static PersistenceStrategy<Member> persistenceStrategy;
 	private static Container instance;
 
 	/*
@@ -93,32 +93,17 @@ public class Container {
 		return null;
 	}
 
-	public void setStrategy(String strat) {
-		strategy = strat;
+	public void setStrategy(PersistenceStrategy<Member> strat) {
+		persistenceStrategy = strat;
 	}
 
 	public void store() throws PersistenceException {
-		if (strategy.equalsIgnoreCase("stream")) {
-			var p = new PersistenceStrategyStream<Member>();
-			p.save(liste);
-		}
-		else if (strategy.equalsIgnoreCase("mongodb")) {
-			var p = new PersistenceStrategyMongoDB<Member>();
-			p.save(liste);
-		}
-		else throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "No implemented Strategy set");
+		if (persistenceStrategy == null) throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "No Strategy set");
+		persistenceStrategy.save(liste);
     }
 
 	public void load() throws PersistenceException {
-		if (strategy.equalsIgnoreCase("stream")) {
-			var p = new PersistenceStrategyStream<Member>();
-			liste = p.load();
-		}
-		else if (strategy.equalsIgnoreCase("mongodb")) {
-			var p = new PersistenceStrategyMongoDB<Member>();
-			liste = p.load();
-		}
-		else throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "No implemented Strategy set");
-
+		if (persistenceStrategy == null) throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "No Strategy set");
+		liste = persistenceStrategy.load();
 	}
 }

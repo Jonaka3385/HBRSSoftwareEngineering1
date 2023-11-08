@@ -6,7 +6,7 @@ public class Client {
         Container container = Container.getInstance();
         Member m1 = new MemberKonkret(1);
         MemberView view = new MemberView();
-        container.setStrategy("Stream");
+        container.setStrategy(new PersistenceStrategyStream<>());
         try {
             container.addMember(m1);
             view.dump(container.getCurrentList());
@@ -26,32 +26,32 @@ public class Client {
             view.dump(container.getCurrentList());
         }
         catch (Exception e) {
-            throw new RuntimeException("store failed");
+            throw new RuntimeException("store failed: " + e);
         }
         try {
             container.deleteMember(1);
             view.dump(container.getCurrentList());
         }
         catch (Exception e) {
-            throw new RuntimeException("delete failed");
+            throw new RuntimeException("delete failed: " + e);
         }
         try {
             container.load();
             view.dump(container.getCurrentList());
         }
         catch (Exception e) {
-            throw new RuntimeException("load failed");
+            throw new RuntimeException("load failed: " + e);
         }
 
-        container.setStrategy("MongoDB");
+        container.setStrategy(new PersistenceStrategyMongoDB<>());
         try {
             container.store();
         }
         catch (PersistenceException e) {
-            System.out.println(e.getExceptionTypeType());
+            System.out.println("PersistenceException: " + e.getExceptionTypeType());
         }
         catch (UnsupportedOperationException e) {
-            System.out.println(e);
+            System.out.println("Mongo not implemented: " + e);
         }
     }
 }
