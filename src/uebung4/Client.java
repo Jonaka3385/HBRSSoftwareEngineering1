@@ -5,7 +5,6 @@ import uebung4.persistence.*;
 import java.util.List;
 
 public class Client {
-
     public void startClient() {
         // Abholung der Referenz des Container-Objekts (Singleton!)
         Container container = Container.getInstance();

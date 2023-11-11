@@ -9,12 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 /*
  * Klasse zum Abspeichern von Objekten in einer Liste
- *
  * c/o Sascha Alda, H-BRS, 2020-2023
- *
  */
 public class Container {
 
@@ -57,7 +54,7 @@ public class Container {
 	 */
 	private Container(){
 		System.out.println("Container ist instanziiert (Konstruktor)!");
-		this.liste = new ArrayList<>();
+		liste = new ArrayList<>();
 	}
 
 	/**
@@ -65,7 +62,7 @@ public class Container {
 	 * @return list
 	 */
 	public List<Member> getCurrentList() {
-		return this.liste;
+		return liste;
 	}
 
 	/*
