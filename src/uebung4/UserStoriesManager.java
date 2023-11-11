@@ -64,6 +64,7 @@ public class UserStoriesManager {
             System.out.print("id: ");
             tmp = scanner.next();
             id = checkPositiveInt(tmp);
+            id = contained(id);
             if (id != -1) incorrect = false;
         }
         incorrect = true;
@@ -115,32 +116,6 @@ public class UserStoriesManager {
         catch (Exception e) {
             System.out.println("add failed:" + e);
         }
-    }
-
-    private static int checkPositiveInt(String str) {
-        int i;
-        try {
-            i = Integer.parseInt(str);
-        }
-        catch(Exception e) {
-            System.out.println("Only Integer: " + e);
-            return -1;
-        }
-        if (i < 0) {
-            System.out.println("No negative");
-            return -1;
-        }
-        return i;
-    }
-
-    private static int checkIntBetween1to5(String str) {
-        int tmp = checkPositiveInt(str);
-        if (tmp == -1) return -1;
-        if (tmp < 1 || tmp > 5) {
-            System.out.println("Only between 1 and 5");
-            return -1;
-        }
-        return tmp;
     }
 
     private static void store() {
@@ -195,5 +170,46 @@ public class UserStoriesManager {
         for (String b : befehle) {
             System.out.println(b);
         }
+    }
+
+    private static int checkPositiveInt(String str) {
+        int i;
+        try {
+            i = Integer.parseInt(str);
+        }
+        catch(Exception e) {
+            System.out.println("Only Integer: " + e);
+            return -1;
+        }
+        if (i < 0) {
+            System.out.println("No negative");
+            return -1;
+        }
+        return i;
+    }
+
+    private static int checkIntBetween1to5(String str) {
+        int tmp = checkPositiveInt(str);
+        if (tmp == -1) return -1;
+        if (tmp < 1 || tmp > 5) {
+            System.out.println("Only between 1 and 5");
+            return -1;
+        }
+        return tmp;
+    }
+
+    private static int contained(int id) {
+        List<Member> list = container.getCurrentList();
+        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
+        for (Member m : list) {
+            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
+        }
+        for (UserStoryMember m : userStoryMemberList) {
+            if (m.getID() == id) {
+                System.out.println("ID: [" + id + "] already taken.");
+                return -1;
+            }
+        }
+        return id;
     }
 }
