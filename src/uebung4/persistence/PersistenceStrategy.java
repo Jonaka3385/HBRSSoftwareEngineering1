@@ -1,4 +1,4 @@
-package uebung3;
+package uebung4.persistence;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import java.util.List;
  *
  * @param <E>
  */
+
 public interface PersistenceStrategy<E> {
     void openConnection() throws PersistenceException;
     void closeConnection() throws PersistenceException;

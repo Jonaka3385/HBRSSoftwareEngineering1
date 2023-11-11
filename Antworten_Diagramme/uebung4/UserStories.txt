@@ -1,0 +1,33 @@
+1.b) User Stories
+-Filter/Kategorisierung Möglichkeiten 
+	-8 (wenn Projekte im allgemeinen bereits implementiert wurden)
+	-Kategorien können bei Projekt Erstellung angegeben werden
+	-Studenten können nach ausgewählten Kategorien filtern
+-konstante Synchronisierung der Inhalte
+	-40 (Wenn der Rest im Allgemeinen implementiert ist)
+	-Alle Daten werden Zentral oder dezentral auf Datenbank-Servern gespeichert
+	-Jede Änderung wird sofort synchronisiert 
+-Projekte können einfach ausgeschrieben werden
+	-40
+	-Es gibt ein grafisches Menü zur geleiteten/erklärten Erstellung 
+	-Kann am Ende einfach veröffentlicht werden
+-Projekte können als vergeben oder abgeschlossen markiert werden
+	-20 (wenn Projekte im allgemeinen bereits implementiert wurden)
+	-vergebene Projekte können so markiert werden, um weitere Bewerbungen zu verhindern
+	-abgeschlossene Projekte werden versteckt, da nicht mehr relevant
+-Es gibt ein funktionierendes Chat Forum
+	-80
+	-Alle Nachrichten werden Live übertragen
+	-Alle Nachrichten werden verschlüsselt
+-Studenten können sich Profile anlegen
+	-40
+	-Profile sind einfach zu erstellen, bearbeiten und löschen
+	-Firmen können sich diese ansehen
+-Firmen müssen sich Profile anlegen
+	-40
+	-Profile sind einfach zu erstellen, bearbeiten und löschen
+	-Studenten können sich diese ansehen
+-Es gibt eine App für Mobilgeräte welche Nachrichten sofort weiterleitet
+	-80 
+	-In der App kann alles gemacht werden was man auch sonst machen kann
+	-Die App verfügt über die Möglichkeit Hintergrundaktualisierungen durchzuführen und Push-Nachrichten zu versenden

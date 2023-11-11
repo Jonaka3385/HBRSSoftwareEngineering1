@@ -1,4 +1,4 @@
-package uebung3;
+package uebung3.persistence;
 
 import org.jetbrains.annotations.NotNull;
 

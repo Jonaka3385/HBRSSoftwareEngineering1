@@ -2,6 +2,8 @@ package uebung3;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import uebung3.persistence.PersistenceException;
+import uebung3.persistence.PersistenceStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,10 @@
 package uebung3;
 
+import uebung3.persistence.PersistenceException;
+import uebung3.persistence.PersistenceStrategy;
+import uebung3.persistence.PersistenceStrategyMongoDB;
+import uebung3.persistence.PersistenceStrategyStream;
+
 public class Client {
 
     public static void main(String[] args) {
