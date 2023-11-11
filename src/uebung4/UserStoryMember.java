@@ -32,7 +32,7 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
 
     @Override
     public String toString() {
-        return id + beschreibung + kriterium + aufwand + mehrwert + strafe + risiko + prio;
+        return id + "; " + beschreibung + "; " + kriterium + "; " + aufwand + "; " + mehrwert + "; " + strafe + "; " + risiko + "; " + prio;
     }
 
     @Override

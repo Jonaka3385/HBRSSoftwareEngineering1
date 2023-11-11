@@ -56,7 +56,91 @@ public class UserStoriesManager {
     }
 
     private static void enter() {
-        System.out.println("Not yet implemented.");
+        String tmp;
+        boolean incorrect = true;
+
+        int id = 0;
+        while (incorrect) {
+            System.out.print("id: ");
+            tmp = scanner.next();
+            id = checkPositiveInt(tmp);
+            if (id != -1) incorrect = false;
+        }
+        incorrect = true;
+
+        System.out.print("beschreibung: ");
+        String beschreibung = scanner.next();
+
+        System.out.print("kriterium: ");
+        String kriterium = scanner.next();
+
+        int aufwand = 0;
+        while (incorrect) {
+            System.out.print("aufwand: ");
+            tmp = scanner.next();
+            aufwand = checkPositiveInt(tmp);
+            if (aufwand != -1) incorrect = false;
+        }
+        incorrect = true;
+
+        int mehrwert = 0;
+        while (incorrect) {
+            System.out.print("mehrwert: ");
+            tmp = scanner.next();
+            mehrwert = checkIntBetween1to5(tmp);
+            if (mehrwert != -1) incorrect = false;
+        }
+        incorrect = true;
+
+        int strafe = 0;
+        while (incorrect) {
+            System.out.print("strafe: ");
+            tmp = scanner.next();
+            strafe = checkIntBetween1to5(tmp);
+            if (strafe != -1) incorrect = false;
+        }
+        incorrect = true;
+
+        int risiko = 0;
+        while (incorrect) {
+            System.out.print("risiko: ");
+            tmp = scanner.next();
+            risiko = checkIntBetween1to5(tmp);
+            if (risiko != -1) incorrect = false;
+        }
+
+        try {
+            container.addMember(new UserStoryMember(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko));
+        }
+        catch (Exception e) {
+            System.out.println("add failed:" + e);
+        }
+    }
+
+    private static int checkPositiveInt(String str) {
+        int i;
+        try {
+            i = Integer.parseInt(str);
+        }
+        catch(Exception e) {
+            System.out.println("Only Integer: " + e);
+            return -1;
+        }
+        if (i < 0) {
+            System.out.println("No negative");
+            return -1;
+        }
+        return i;
+    }
+
+    private static int checkIntBetween1to5(String str) {
+        int tmp = checkPositiveInt(str);
+        if (tmp == -1) return -1;
+        if (tmp < 1 || tmp > 5) {
+            System.out.println("Only between 1 and 5");
+            return -1;
+        }
+        return tmp;
     }
 
     private static void store() {
