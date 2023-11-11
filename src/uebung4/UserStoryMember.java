@@ -13,7 +13,7 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
     private final int mehrwert;
     private final int strafe;
     private final int risiko;
-    private final int prio;
+    private final double prio;
 
     public UserStoryMember(Integer id, String beschreibung, String kriterium, int aufwand, int mehrwert, int strafe, int risiko) {
         this.id = id;
@@ -23,7 +23,7 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
         this.mehrwert = mehrwert;
         this.strafe = strafe;
         this.risiko = risiko;
-        prio = ((this.mehrwert + this.strafe) / (this.aufwand + this.risiko));
+        prio = ((double) (this.mehrwert + this.strafe) / (this.aufwand + this.risiko));
     }
 
     public Integer getID() {
@@ -37,6 +37,6 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
 
     @Override
     public int compareTo(@NotNull UserStoryMember o) {
-        return (this.prio*100) - (o.prio*100);
+        return (int) ((this.prio*100) - (o.prio*100));
     }
 }

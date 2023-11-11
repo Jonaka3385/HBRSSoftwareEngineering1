@@ -161,7 +161,7 @@ public class UserStoriesManager {
         }
     }
 
-    private static void dump() {
+    private static void dump() {                                    // Noch zu Filter-Map-Reduce umschreiben!!!!!!!!!!!
         List<Member> list = container.getCurrentList();
         List<UserStoryMember> userStoryMemberList = new ArrayList<>();
         for (Member m : list) {
@@ -175,7 +175,7 @@ public class UserStoriesManager {
     }
 
     private static void search() {
-        System.out.println("Not yet implemented.");
+        System.out.println("Not yet implemented.");                 // Wichtig!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     private static void exit() {
