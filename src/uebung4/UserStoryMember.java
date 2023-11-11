@@ -35,6 +35,10 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
         return id + "; " + beschreibung + "; " + kriterium + "; " + aufwand + "; " + mehrwert + "; " + strafe + "; " + risiko + "; " + prio;
     }
 
+    public boolean sameDescription(@NotNull String description) {
+        return description.equals(beschreibung);
+    }
+
     @Override
     public int compareTo(@NotNull UserStoryMember o) {
         return (int) ((this.prio*100) - (o.prio*100));

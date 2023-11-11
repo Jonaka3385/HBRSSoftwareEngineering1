@@ -1,6 +1,7 @@
 package uebung4.persistence;
 
 import org.jetbrains.annotations.NotNull;
+import uebung4.Member;
 
 import java.io.*;
 import java.util.List;
@@ -98,9 +99,10 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
 
             // Auslesen der Liste
             Object obj = ois.readObject();
-            if (obj instanceof List<?>) {
-                list = (List) obj;
+            if (obj instanceof List<?> tmpList) {
+                list = (List) tmpList;
             }
+            assert list != null;
             System.out.println("LOG: Es wurden " + list.size() + " User Stories erfolgreich reingeladen!");
             return list;
         }

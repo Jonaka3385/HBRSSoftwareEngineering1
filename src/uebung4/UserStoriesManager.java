@@ -28,8 +28,8 @@ public class UserStoriesManager {
 
     private static void listen() {
         System.out.print("> ");
-        String line = scanner.nextLine();
-        switch(line) {
+        String input = scanner.next();
+        switch(input) {
             case "enter":
                 enter();
                 break;
@@ -136,21 +136,32 @@ public class UserStoriesManager {
         }
     }
 
-    private static void dump() {                                    // Noch zu Filter-Map-Reduce umschreiben!!!!!!!!!!!
+    private static void dump() {
         List<Member> list = container.getCurrentList();
         List<UserStoryMember> userStoryMemberList = new ArrayList<>();
         for (Member m : list) {
             if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
         }
         userStoryMemberList.sort(Comparator.naturalOrder());
-        System.out.println("ID  Description Kriterium   Aufwand Mehrwert    Strafe  Risiko  Prio");
+        System.out.println("ID; Description; Kriterium; Aufwand; Mehrwert; Strafe; Risiko; Prio");
         for (UserStoryMember usm : userStoryMemberList) {
             System.out.println(usm);
         }
     }
 
     private static void search() {
-        System.out.println("Not yet implemented.");                 // Wichtig!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        List<Member> list = container.getCurrentList();
+        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
+        for (Member m : list) {
+            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
+        }
+
+        System.out.print("Description: ");
+        String description = scanner.next();
+        for (UserStoryMember m : userStoryMemberList) {
+            if (m.sameDescription(description)) System.out.println(m);
+            else System.out.println("Not Found");
+        }
     }
 
     private static void exit() {
