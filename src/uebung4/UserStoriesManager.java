@@ -4,6 +4,9 @@ import uebung4.persistence.PersistenceException;
 import uebung4.persistence.PersistenceStrategy;
 import uebung4.persistence.PersistenceStrategyStream;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserStoriesManager {
@@ -53,7 +56,7 @@ public class UserStoriesManager {
     }
 
     private static void enter() {
-
+        System.out.println("Not yet implemented.");
     }
 
     private static void store() {
@@ -75,11 +78,20 @@ public class UserStoriesManager {
     }
 
     private static void dump() {
-
+        List<Member> list = container.getCurrentList();
+        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
+        for (Member m : list) {
+            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
+        }
+        userStoryMemberList.sort(Comparator.naturalOrder());
+        System.out.println("ID  Description Kriterium   Aufwand Mehrwert    Strafe  Risiko  Prio");
+        for (UserStoryMember usm : userStoryMemberList) {
+            System.out.println(usm);
+        }
     }
 
     private static void search() {
-
+        System.out.println("Not yet implemented.");
     }
 
     private static void exit() {
