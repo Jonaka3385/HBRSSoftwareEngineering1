@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 /*
- * Klasse zum Management sowie zur Eingabe unnd Ausgabe von User-Stories.
+ * Klasse zum Management sowie zur Eingabe und Ausgabe von User-Stories.
  * Die Anwendung wird über dies Klasse auch gestartet (main-Methode hier vorhanden)
  *
  * erstellt von Julius P., H-BRS 2023, Version 1.0
@@ -80,7 +80,7 @@ public class Container {
 	 * Alle Exceptions werden an den aufrufenden Context (hier: main) weitergegeben (throws)
 	 * Das entlastet den Entwickler zur Entwicklungszeit und den Endanwender zur Laufzeit
 	 */
-	public void startEingabe() throws ContainerException, Exception {
+	public void startEingabe() throws Exception {
 		String strInput;
 		
 		// Initialisierung des Eingabe-View
@@ -99,26 +99,28 @@ public class Container {
 			String[] strings = strInput.split(" ");
 
 			// 	Falls 'help' eingegeben wurde, werden alle Befehle ausgedruckt
-			if ( strings[0].equals("help") ) {
+			if (strings[0].equals("help")) {
 				System.out.println("Folgende Befehle stehen zur Verfuegung: help, dump....");
 			}
 			// Auswahl der bisher implementierten Befehle:
-			if ( strings[0].equals("dump") ) {
+			if (strings[0].equals("dump")) {
 				startAusgabe();
 			}
 			// Auswahl der bisher implementierten Befehle:
-			if ( strings[0].equals("enter") ) {
+			if (strings[0].equals("enter")) {
 				// Daten einlesen ...
 				// this.addUserStory( new UserStory( data ) ) um das Objekt in die Liste einzufügen.
 			}
 								
-			if (  strings[0].equals("store")  ) {
+			if (strings[0].equals("store")) {
 				// Beispiel-Code
 				UserStory userStory = new UserStory();
 				userStory.setId(22);
 				this.addUserStory(userStory);
 				this.store();
 			}
+
+			if (strings[0].equals("exit")) break;
 		} // Ende der Schleife
 	}
 
@@ -182,7 +184,7 @@ public class Container {
 		  // Auslesen der Liste
 		  Object obj = ois.readObject();
 		  if (obj instanceof List<?>) {
-			  this.liste = (List) obj;
+			  this.liste = (List<UserStory>) obj;
 		  }
 		  System.out.println("Es wurden " + this.size() + " UserStory erfolgreich reingeladen!");
 		}
@@ -193,8 +195,21 @@ public class Container {
 			System.out.println("LOG (für Admin): Liste konnte nicht extrahiert werden (ClassNotFound)!");
 		}
 		finally {
-		  if (ois != null) try { ois.close(); } catch (IOException e) {}
-		  if (fis != null) try { fis.close(); } catch (IOException e) {}
+		  if (ois != null)  {
+			  try {
+				  ois.close();
+			  }
+			  catch (IOException e) {
+				  System.out.println();
+			  }
+		  }
+		  if (fis != null) {
+			  try {
+				  fis.close();
+			  } catch (IOException e) {
+				  System.out.println();
+			  }
+		  }
 		}
 	}
 
@@ -247,7 +262,7 @@ public class Container {
 	 * @return return
 	 */
 	private @Nullable UserStory getUserStory(int id) {
-		for ( UserStory userStory : liste) {
+		for (UserStory userStory : liste) {
 			if (id == userStory.getId()) return userStory;
 		}
 		return null;

@@ -2,7 +2,6 @@ package uebung4.prototype;
 
 public class UserStory {
     // ToDo: Sind die Attribute der Klasse UserStory vollständig? (F4)
-
     String titel;
     int aufwand = 0;
     int id = 0;

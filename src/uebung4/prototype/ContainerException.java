@@ -1,8 +1,6 @@
 package uebung4.prototype;
 
 public class ContainerException extends Exception {
-	
-	private String modus;
 	private Integer id;
 	
 	public ContainerException(String s) {
