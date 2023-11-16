@@ -69,7 +69,7 @@ class ContainerTest {
     void testStoreDeleteAndLoad() {
         try {
             container.setPersistenceStrategie(new PersistenceStrategyStream<>());
-            container.addMember(new MemberKonkret(1));
+            container.addObject(new MemberKonkret(1));
 
             assertEquals(1 , container.size());
             container.store();

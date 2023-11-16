@@ -4,23 +4,22 @@ import uebung4.persistence.PersistenceException;
 import uebung4.persistence.PersistenceStrategy;
 import uebung4.persistence.PersistenceStrategyStream;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserStoriesManager {
     static Scanner scanner;
-    static Container container;
+    static Container<UserStory> container;
     static boolean running;
 
     public static void start() {
         scanner = new Scanner(System.in);
-        container = Container.getInstance();
-        PersistenceStrategy<Member> strategy = new PersistenceStrategyStream<>();
+        Container<?> tmp = Container.getInstance();
+        container = (Container<UserStory>) tmp;
+        PersistenceStrategy<UserStory> strategy = new PersistenceStrategyStream<>();
         container.setPersistenceStrategie(strategy);
         running = true;
-
         while (running) {
             listen();
         }
@@ -111,7 +110,7 @@ public class UserStoriesManager {
         }
 
         try {
-            container.addMember(new UserStoryMember(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko));
+            container.addObject(new UserStory(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko));
         }
         catch (Exception e) {
             System.out.println("add failed:" + e);
@@ -137,29 +136,20 @@ public class UserStoriesManager {
     }
 
     private static void dump() {
-        List<Member> list = container.getCurrentList();
-        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
-        for (Member m : list) {
-            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
-        }
-        userStoryMemberList.sort(Comparator.naturalOrder());
+        List<UserStory> list = container.getCurrentList();
+        list.sort(Comparator.naturalOrder());
         System.out.println("ID; Description; Kriterium; Aufwand; Mehrwert; Strafe; Risiko; Prio");
-        for (UserStoryMember usm : userStoryMemberList) {
-            System.out.println(usm);
+        for (UserStory userStory : list) {
+            System.out.println(userStory);
         }
     }
 
     private static void search() {
-        List<Member> list = container.getCurrentList();
-        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
-        for (Member m : list) {
-            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
-        }
-
+        List<UserStory> list = container.getCurrentList();
         System.out.print("Description: ");
         String description = scanner.next();
-        for (UserStoryMember m : userStoryMemberList) {
-            if (m.sameDescription(description)) System.out.println(m);
+        for (UserStory userStory : list) {
+            if (userStory.sameDescription(description)) System.out.println(userStory);
             else System.out.println("Not Found");
         }
     }
@@ -168,6 +158,7 @@ public class UserStoriesManager {
         running = false;
         scanner = null;
         container = null;
+        System.out.println("exited");
     }
 
     private static void help() {
@@ -210,13 +201,9 @@ public class UserStoriesManager {
     }
 
     private static int contained(int id) {
-        List<Member> list = container.getCurrentList();
-        List<UserStoryMember> userStoryMemberList = new ArrayList<>();
-        for (Member m : list) {
-            if (m instanceof UserStoryMember) userStoryMemberList.add((UserStoryMember) m);
-        }
-        for (UserStoryMember m : userStoryMemberList) {
-            if (m.getID() == id) {
+        List<UserStory> list = container.getCurrentList();
+        for (UserStory userStory : list) {
+            if (userStory.getID() == id) {
                 System.out.println("ID: [" + id + "] already taken.");
                 return -1;
             }

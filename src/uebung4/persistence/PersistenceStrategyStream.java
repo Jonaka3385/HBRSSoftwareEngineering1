@@ -1,7 +1,6 @@
 package uebung4.persistence;
 
 import org.jetbrains.annotations.NotNull;
-import uebung4.Member;
 
 import java.io.*;
 import java.util.List;
@@ -25,7 +24,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
 
     /**
      * Used only for opening a connection for storing objects
-     * Exception occurs in some SDKs, when both are created (TODO!)
+     * Exception occurs in some SDKs, when both are created
      * Workaround: open the Streams in the load method
      */
     @Override
@@ -100,7 +99,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
             // Auslesen der Liste
             Object obj = ois.readObject();
             if (obj instanceof List<?> tmpList) {
-                list = (List) tmpList;
+                list = (List<E>) tmpList;
             }
             assert list != null;
             System.out.println("LOG: Es wurden " + list.size() + " User Stories erfolgreich reingeladen!");

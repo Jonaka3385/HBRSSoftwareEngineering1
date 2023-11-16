@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
-public class UserStoryMember implements Member, Serializable, Comparable<UserStoryMember> {
+public class UserStory implements Serializable, Comparable<UserStory> {
 
     private final Integer id;
     private final String beschreibung;
@@ -15,7 +15,7 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
     private final int risiko;
     private final double prio;
 
-    public UserStoryMember(Integer id, String beschreibung, String kriterium, int aufwand, int mehrwert, int strafe, int risiko) {
+    public UserStory(Integer id, String beschreibung, String kriterium, int aufwand, int mehrwert, int strafe, int risiko) {
         this.id = id;
         this.beschreibung = beschreibung;
         this.kriterium = kriterium;
@@ -40,7 +40,7 @@ public class UserStoryMember implements Member, Serializable, Comparable<UserSto
     }
 
     @Override
-    public int compareTo(@NotNull UserStoryMember o) {
+    public int compareTo(@NotNull UserStory o) {
         return (int) ((this.prio*100) - (o.prio*100));
     }
 }

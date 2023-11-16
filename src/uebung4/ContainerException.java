@@ -1,10 +1,8 @@
 package uebung4;
 
 public class ContainerException extends Exception {
-	
-	private String modus;
-	private Integer id;
-	private ExceptionType type;
+	private Object object;
+	private final ExceptionType type;
 	
 	public ContainerException(ExceptionType type) {
 		this.type = type;
@@ -12,18 +10,18 @@ public class ContainerException extends Exception {
  
 	@Override
 	public void printStackTrace() {
-		if (type == ExceptionType.DuplicateMember) {
-			System.out.println("Das Member-Objekt mit der ID " + id + " ist bereits vorhanden!");
+		if (type == ExceptionType.DuplicateObject) {
+			System.out.println("Das Member-Objekt mit der ID " + object + " ist bereits vorhanden!");
 		} else if (type == ExceptionType.InfoCastException) {
-		    System.out.println("Das Member-Objekt mit der ID " + id + " konnte nicht gecastet werden!");
+		    System.out.println("Das Member-Objekt mit der ID " + object + " konnte nicht gecastet werden!");
 		} 
-	} 
+	}
 
-	public void addID(Integer id) {
-		this.id = id;
+	public void setObject(Object object) {
+		this.object = object;
 	}
 	
 	public enum ExceptionType {
-		InfoCastException, DuplicateMember
+		InfoCastException, DuplicateObject
 	}
 }
