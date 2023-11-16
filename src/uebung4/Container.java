@@ -21,11 +21,11 @@ public class Container<T> {
 
 	private Modus modus = Modus.LIST_TYPE_ARRAY;
 
-	//Statische Klassen-Variable, um die Referenz
-	//auf das einzige Container-Objekt abzuspeichern
+	// Statische Klassen-Variable, um die Referenz
+	// auf das einzige Container-Objekt abzuspeichern
 	// Dynamische Belegung: nur falls Methode getInstance geladen
 	// wird, dann wird nach Bedarf die Variable mit einer Referenz gefüllt
-	private static Container<?> instance = null; // = new Container();
+	private static Container<?> instance = null;
 
 	// Reference to the internal strategy (e.g. MongoDB or Stream)
 	private PersistenceStrategy<T> strategy = null;
@@ -41,12 +41,23 @@ public class Container<T> {
 	 * zwei parallel zugreifende Objekte zwei unterschiedliche
 	 * Objekte erhalten (vgl. auch Erlaeuterung in Uebung)
 	 */
-	public static synchronized Container<?> getInstance() {
+	public static Container<?> getInstance() {
+		if (instance == null) {
+			newInstance();
+		}
+		return instance;
+	}
+
+	/*
+	 * Auslagern der newInstance() Methode um getInstance() performanter zu machen.
+	 * Unter normalen Umständen wird newInstance sehr selten, bzw. meist nur einmal, aufgerufen.
+	 * Das Auslagern der instance Erstellung führt dazu dass getInstance() nicht mehr synchronized sein muss.
+	 */
+	private static synchronized void newInstance() {
 		if (instance == null) {
 			instance = new Container<>();
 			System.out.println("Objekt vom Typ Container wurde instanziiert!");
 		}
-		return instance;
 	}
 
 	/*
@@ -88,8 +99,7 @@ public class Container<T> {
 			case "Custom":
 				modus = Modus.LIST_TYPE_CUSTOM;
 				break;
-			default:
-				break;
+			default: break;
 		}
 	}
 
@@ -218,5 +228,34 @@ public class Container<T> {
 		} catch(UnsupportedOperationException e) {
 			throw new PersistenceException(PersistenceException.ExceptionType.ImplementationNotAvailable , "Not implemented!");
 		}
+	}
+
+	public void selfDelete() {
+		try {
+			closeConnection();
+		} catch (Exception e) {
+			System.out.println("SelfDelete Exception: " + e);
+		}
+
+		switch (modus) {
+			case Modus.LIST_TYPE_ARRAY:
+				liste = new ArrayList<>();
+				break;
+			case Modus.LIST_TYPE_LINKED:
+				liste = new LinkedList<>();
+				break;
+			case Modus.LIST_TYPE_CUSTOM:
+				System.out.println("No custom Mode implemented. Using default (Array).");
+				modus = Modus.LIST_TYPE_ARRAY;
+				liste = new ArrayList<>();
+				break;
+			default:
+				System.out.println("No mode set. Using default (Array).");
+				modus = Modus.LIST_TYPE_ARRAY;
+				liste = new ArrayList<>();
+				break;
+		}
+
+		instance = null;
 	}
 }

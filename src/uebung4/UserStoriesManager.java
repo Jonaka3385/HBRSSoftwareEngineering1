@@ -1,5 +1,6 @@
 package uebung4;
 
+import org.jetbrains.annotations.NotNull;
 import uebung4.persistence.PersistenceException;
 import uebung4.persistence.PersistenceStrategy;
 import uebung4.persistence.PersistenceStrategyStream;
@@ -27,10 +28,11 @@ public class UserStoriesManager {
 
     private static void listen() {
         System.out.print("> ");
-        String input = scanner.next();
-        switch(input) {
+        String input = scanner.nextLine();
+        String[] strings = input.split(" ");
+        switch(strings[0]) {
             case "enter":
-                enter();
+                enter(strings);
                 break;
             case "store":
                 store();
@@ -39,7 +41,7 @@ public class UserStoriesManager {
                 load();
                 break;
             case "dump":
-                dump();
+                dump(strings);
                 break;
             case "search":
                 search();
@@ -54,74 +56,143 @@ public class UserStoriesManager {
         }
     }
 
-    private static void enter() {
-        String tmp;
-        boolean incorrect = true;
+    private static void enter(String @NotNull [] followUps) {
+        if (followUps.length <= 1) {
+            String tmp;
+            boolean incorrect = true;
 
-        int id = 0;
-        while (incorrect) {
-            System.out.print("id: ");
-            tmp = scanner.next();
+            int id = 0;
+            while (incorrect) {
+                System.out.print("id: ");
+                tmp = scanner.next();
+                id = checkPositiveInt(tmp);
+                id = contained(id);
+                if (id != -1) incorrect = false;
+            }
+            incorrect = true;
+
+            System.out.print("beschreibung: ");
+            String beschreibung = scanner.next();
+
+            System.out.print("kriterium: ");
+            String kriterium = scanner.next();
+
+            int aufwand = 0;
+            while (incorrect) {
+                System.out.print("aufwand: ");
+                tmp = scanner.next();
+                aufwand = checkPositiveInt(tmp);
+                if (aufwand != -1) incorrect = false;
+            }
+            incorrect = true;
+
+            int mehrwert = 0;
+            while (incorrect) {
+                System.out.print("mehrwert: ");
+                tmp = scanner.next();
+                mehrwert = checkIntBetween1to5(tmp);
+                if (mehrwert != -1) incorrect = false;
+            }
+            incorrect = true;
+
+            int strafe = 0;
+            while (incorrect) {
+                System.out.print("strafe: ");
+                tmp = scanner.next();
+                strafe = checkIntBetween1to5(tmp);
+                if (strafe != -1) incorrect = false;
+            }
+            incorrect = true;
+
+            int risiko = 0;
+            while (incorrect) {
+                System.out.print("risiko: ");
+                tmp = scanner.next();
+                risiko = checkIntBetween1to5(tmp);
+                if (risiko != -1) incorrect = false;
+            }
+
+            System.out.print("Projekt: ");
+            String projekt = scanner.next();
+
+            try {
+                container.addObject(new UserStory(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko, projekt));
+            } catch (Exception e) {
+                System.out.println("add failed:" + e);
+            }
+        } else {
+            String tmp;
+            boolean incorrect = true;
+
+            int id;
+            tmp = followUps[1];
             id = checkPositiveInt(tmp);
+            if (id == -1) return;
             id = contained(id);
             if (id != -1) incorrect = false;
-        }
-        incorrect = true;
+            if (incorrect) {
+                System.out.println("False ID");
+                return;
+            }
+            incorrect = true;
 
-        System.out.print("beschreibung: ");
-        String beschreibung = scanner.next();
+            String beschreibung = followUps[2];
 
-        System.out.print("kriterium: ");
-        String kriterium = scanner.next();
+            String kriterium = followUps[3];
 
-        int aufwand = 0;
-        while (incorrect) {
-            System.out.print("aufwand: ");
-            tmp = scanner.next();
+            int aufwand;
+            tmp = followUps[4];
             aufwand = checkPositiveInt(tmp);
             if (aufwand != -1) incorrect = false;
-        }
-        incorrect = true;
+            if (incorrect) {
+                System.out.println("False Aufwand");
+                return;
+            }
+            incorrect = true;
 
-        int mehrwert = 0;
-        while (incorrect) {
-            System.out.print("mehrwert: ");
-            tmp = scanner.next();
+            int mehrwert;
+            tmp = followUps[5];
             mehrwert = checkIntBetween1to5(tmp);
             if (mehrwert != -1) incorrect = false;
-        }
-        incorrect = true;
+            if (incorrect) {
+                System.out.println("False Mehrwert");
+                return;
+            }
+            incorrect = true;
 
-        int strafe = 0;
-        while (incorrect) {
-            System.out.print("strafe: ");
-            tmp = scanner.next();
+            int strafe;
+            tmp = followUps[6];
             strafe = checkIntBetween1to5(tmp);
             if (strafe != -1) incorrect = false;
-        }
-        incorrect = true;
+            if (incorrect) {
+                System.out.println("False Strafe");
+                return;
+            }
+            incorrect = true;
 
-        int risiko = 0;
-        while (incorrect) {
-            System.out.print("risiko: ");
-            tmp = scanner.next();
+            int risiko;
+            tmp = followUps[7];
             risiko = checkIntBetween1to5(tmp);
             if (risiko != -1) incorrect = false;
-        }
+            if (incorrect) {
+                System.out.println("False Risiko");
+                return;
+            }
 
-        try {
-            container.addObject(new UserStory(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko));
-        }
-        catch (Exception e) {
-            System.out.println("add failed:" + e);
+            String projekt = followUps[8];
+
+            try {
+                container.addObject(new UserStory(id, beschreibung, kriterium, aufwand, mehrwert, strafe, risiko, projekt));
+            } catch (Exception e) {
+                System.out.println("add failed:" + e);
+            }
         }
     }
 
     private static void store() {
         try {
             container.store();
-        }
-        catch (PersistenceException e) {
+        } catch (PersistenceException e) {
             System.out.println("store failed: " + e);
         }
     }
@@ -129,18 +200,26 @@ public class UserStoriesManager {
     private static void load() {
         try {
             container.load();
-        }
-        catch (PersistenceException e) {
+        } catch (PersistenceException e) {
             System.out.println("load failed: " + e);
         }
     }
 
-    private static void dump() {
-        List<UserStory> list = container.getCurrentList();
-        list.sort(Comparator.naturalOrder());
-        System.out.println("ID; Description; Kriterium; Aufwand; Mehrwert; Strafe; Risiko; Prio");
-        for (UserStory userStory : list) {
-            System.out.println(userStory);
+    private static void dump(String @NotNull [] followUps) {
+        if (followUps.length <= 1) {
+            List<UserStory> list = container.getCurrentList();
+            list.sort(Comparator.naturalOrder());
+            System.out.println("ID; Description; Kriterium; Aufwand; Mehrwert; Strafe; Risiko; Prio");
+            for (UserStory userStory : list) {
+                System.out.println(userStory);
+            }
+        } else if (followUps[1].equalsIgnoreCase("projekt")) {
+            List<UserStory> list = container.getCurrentList();
+            list.sort(Comparator.naturalOrder());
+            System.out.println("ID; Description; Kriterium; Aufwand; Mehrwert; Strafe; Risiko; Prio");
+            list.stream().filter(userStory -> userStory.getProjekt().equalsIgnoreCase(followUps[2])).forEach(System.out::println);
+        } else {
+            System.out.println("Not allowed followUp-Statement");
         }
     }
 
@@ -178,8 +257,7 @@ public class UserStoriesManager {
         int i;
         try {
             i = Integer.parseInt(str);
-        }
-        catch(Exception e) {
+        } catch(Exception e) {
             System.out.println("Only Integer: " + e);
             return -1;
         }

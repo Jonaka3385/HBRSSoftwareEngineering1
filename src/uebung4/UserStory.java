@@ -14,8 +14,9 @@ public class UserStory implements Serializable, Comparable<UserStory> {
     private final int strafe;
     private final int risiko;
     private final double prio;
+    private final String projekt;
 
-    public UserStory(Integer id, String beschreibung, String kriterium, int aufwand, int mehrwert, int strafe, int risiko) {
+    public UserStory(Integer id, String beschreibung, String kriterium, int aufwand, int mehrwert, int strafe, int risiko, String projekt) {
         this.id = id;
         this.beschreibung = beschreibung;
         this.kriterium = kriterium;
@@ -24,6 +25,19 @@ public class UserStory implements Serializable, Comparable<UserStory> {
         this.strafe = strafe;
         this.risiko = risiko;
         prio = ((double) (this.mehrwert + this.strafe) / (this.aufwand + this.risiko));
+        this.projekt = projekt;
+    }
+
+    public UserStory(Integer id) {
+        this.id = id;
+        this.beschreibung = "Beschreibung";
+        this.kriterium = "Kriterium";
+        this.aufwand = 1;
+        this.mehrwert = 1;
+        this.strafe = 1;
+        this.risiko = 1;
+        prio = ((double) (this.mehrwert + this.strafe) / (this.aufwand + this.risiko));
+        this.projekt = "Projekt";
     }
 
     public Integer getID() {
@@ -32,11 +46,15 @@ public class UserStory implements Serializable, Comparable<UserStory> {
 
     @Override
     public String toString() {
-        return id + "; " + beschreibung + "; " + kriterium + "; " + aufwand + "; " + mehrwert + "; " + strafe + "; " + risiko + "; " + prio;
+        return id + "; " + beschreibung + "; " + kriterium + "; " + aufwand + "; " + mehrwert + "; " + strafe + "; " + risiko + "; " + prio + "; " + projekt;
     }
 
     public boolean sameDescription(@NotNull String description) {
         return description.equals(beschreibung);
+    }
+
+    public String getProjekt() {
+        return projekt;
     }
 
     @Override

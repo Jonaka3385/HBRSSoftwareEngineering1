@@ -70,8 +70,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
         try {
             System.out.println( "LOG: Es wurden " +  list.size() + " Member-Objekte wurden erfolgreich gespeichert!");
             oos.writeObject( list );
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // Koennte man ausgeben für interne Debugs: e.printStackTrace();
             // Chain of Responsibility: Hochtragen der Exception in Richtung Ausgabe (UI)
             // Uebergabe in ein lesbares Format fuer den Benutzer
@@ -98,19 +97,15 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
 
             // Auslesen der Liste
             Object obj = ois.readObject();
-            if (obj instanceof List<?> tmpList) {
-                list = (List<E>) tmpList;
-            }
+            if (obj instanceof List<?> tmpList) list = (List<E>) tmpList;
             assert list != null;
             System.out.println("LOG: Es wurden " + list.size() + " User Stories erfolgreich reingeladen!");
             return list;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // Sup-Optimal, da Exeception in Form eines unlesbaren Stake-Traces ausgegeben wird
             e.printStackTrace();
             throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei!");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             // Chain of Responsbility erfuellt, durch Throw der Exceotion kann UI
             // benachrichtigt werden!
             throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei! Class not found!");
