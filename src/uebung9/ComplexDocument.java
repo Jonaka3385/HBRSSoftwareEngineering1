@@ -1,11 +1,14 @@
 package uebung9;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexDocument extends Document {
-    private List<Document> docs;
+    private final List<Document> docs;
 
-    public ComplexDocument() {}
+    public ComplexDocument() {
+        docs = new ArrayList<>();
+    }
 
     public int getSize() {
         int size = 0;
@@ -24,7 +27,7 @@ public class ComplexDocument extends Document {
         return null;
     }
 
-    public void AddDocument(Document newDoc) {
+    public void addDocument(Document newDoc) {
         docs.add(newDoc);
     }
 
