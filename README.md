@@ -1,7 +1,7 @@
 # Software Engineering 1
 Wintersemester 2023
 
-Aufgaben und Code-Teile bereitgestellt von Prof. Alda
+Aufgaben bereitgestellt von Prof. Alda (und Mitarbeiter) 
 
 
 # ReadMe des originalen Repository:
