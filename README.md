@@ -1,3 +1,8 @@
+# Software Engineering 1
+Wintersemester 2023
+Aufgaben und Code-Teile bereitgestellt von Prof. Alda
+
+# ReadMe des originalen Repository:
 ## GitHub-Seite der Veranstaltung SE-1 (Prof. Alda)
 
 Auf dieser GitHub-Seite finden sie die Source-Codes aus den Übungen sowie Demo-Codes aus den Vorlesungen. Sie finden hier zudem einige nützliche Links für die Übungen.
