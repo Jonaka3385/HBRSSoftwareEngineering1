@@ -1,6 +1,8 @@
 # Software Engineering 1
 Wintersemester 2023
+
 Aufgaben und Code-Teile bereitgestellt von Prof. Alda
+
 
 # ReadMe des originalen Repository:
 ## GitHub-Seite der Veranstaltung SE-1 (Prof. Alda)
